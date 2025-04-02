@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Magallanes Dogs</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Don't use this in dogion: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const dogs = [
+        {
+          id: 1,
+          name: 'Jorge',
+          birthDay: 'July 11, 2017',
+          imageSrc: './images/Jorge_1.jpg',
+          imageAlt: 'A white toy poodle sitting on a chair looking to the side.',
+        },
+        {
+          id: 2,
+          name: 'Chique',
+          birthDay: 'March 16, 2018',
+          imageSrc: './images/Chique_1.jpg',
+          imageAlt: 'A brown shih tzu with a cone laying on a straw bed.',
+        },
+        {
+          id: 3,
+          name: 'Bimbo',
+          birthDay: 'August 1, 2018',
+          imageSrc: './images/Bimbo_1.jpg',
+          imageAlt: 'A brown shih tzu laying by his side.',
+        },
+        {
+          id: 4,
+          name: 'Lychee',
+          birthDay: 'October 31, 2020',
+          imageSrc: './images/Lychee_1.jpg',
+          imageAlt: 'A white toy poodle looking up at the camera.',
+        },
+        {
+          id: 5,
+          name: 'Skye',
+          birthDay: 'November 6, 2021',
+          imageSrc: './images/Skye_1.jpg',
+          imageAlt: 'A white toy poodle on a bed looking up aat the camera.',
+        },
+        {
+          id: 6,
+          name: 'Chamcham',
+          birthDay: 'January 4, 2023',
+          imageSrc: './images/Chamcham_1.jpg',
+          imageAlt: 'A brown shih tzu laying at her side, being petted on the stomach.',
+        },
+        {
+          id: 7,
+          name: 'Mocha',
+          birthDay: 'February 8, 2024',
+          imageSrc: './images/Mocha_1.jpg',
+          imageAlt: 'A brown half shih tzu half toy poodle smiling at the camera.',
+        },
+      ]
+
+      const currentDate = new Date();
+
+      dogs.forEach(dog => {
+        let birthDate = new Date(dog.birthDay);
+
+        let birthYear = birthDate.getFullYear();
+        let currentYear = currentDate.getFullYear();
+
+        let age = currentYear - birthYear;
+
+        if (age === 1) {
+          dog.age = `${age} year old`;
+        } else {
+          dog.age = `${age} years old`;
+        }
+      });
+
+      function MyApp() {
+        return (
+          <div className="bg-white">
+            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+              <h2 className="text-center text-2xl font-bold text-gray-900 mb-8">Fake Magallanes Dogs</h2>
+
+              <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                {dogs.map((dog) => (
+                  <a key={dog.id} className="group flex flex-col items-center text-center">
+                    <img
+                      alt={dog.imageAlt}
+                      src={dog.imageSrc}
+                      className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
+                    />
+                    <h3 className="mt-4 text-sm text-gray-700">{dog.name}</h3>
+                    <p className="mt-1 text-lg font-medium text-gray-900">{dog.birthDay}</p>
+                    <p className="mt-1 text-lg font-medium text-gray-900">{dog.age}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for dogion.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
